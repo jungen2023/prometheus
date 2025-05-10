@@ -15,6 +15,22 @@ data:
       static_configs:
       - targets:
         - 192.168.57.5:9100
+    # kube-state-metrics
+    - job_name: kube-state-metrics
+      scrape_interval: 5s
+      static_configs:
+      - targets:
+        - kube-state-metrics.kube-system.svc.cluster.local:8080
+    # metrics-server
+    #- job_name: metrics-server
+    #  scheme: https  #指定HTTPS协议
+    #  tls_config:
+    #    ca_file: /var/lib/rancher/k3s/server/tls/ca.crt  # Exporter证书的CA证书路径（若自签需提供）
+    #    insecure_skip_verify: true  #若证书不受信任，跳过验证（生产环境不推荐）
+    #  scrape_interval: 5s
+    #  static_configs:
+    #  - targets:
+    #    - metrics-server.kube-system.svc.cluster.local:443
 kind: ConfigMap
 metadata:
   creationTimestamp: null
