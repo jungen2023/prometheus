@@ -23,7 +23,7 @@ spec:
         - mountPath: /etc/ssl/certs
           name: ca-certificates
           readOnly: true
-        - mountPath: /grafana
+        - mountPath: /data
           name: grafana-storage
         env:
         - name: INFLUXDB_HOST
@@ -43,7 +43,9 @@ spec:
         hostPath:
           path: /var/lib/rancher/k3s/server/tls
       - name: grafana-storage
-        emptyDir: {}
+        #emptyDir: {}
+        hostPath:
+          path: /grafana
 ---
 apiVersion: v1
 kind: Service
